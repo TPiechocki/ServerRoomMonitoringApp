@@ -31,7 +31,7 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with: 
-          context: ServerRoomMonitoring.Web
+          file: ServerRoomMonitoring.Web/Dockerfile
           push: true
           tags: tpiechocki/si_175690:latest
 
