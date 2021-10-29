@@ -1,9 +1,11 @@
 services:
     serverroom-web:
         container_name: si_175690-serverroom-web
-        image: tpiechocki/si_175690         # TODO: use faculty docker registry here
+        image: tpiechocki/si_175690
         ports:
             - 17569:80
+        networks:
+            - network
     rabbitmq:
         image: rabbitmq:3-management-alpine
         container_name: si_175690-rabbitmq
@@ -18,3 +20,7 @@ services:
         ports:
             - 5672:5672
             - 15672:15672
+        networks:
+            - network
+networks:
+    network: {}
