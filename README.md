@@ -1,4 +1,5 @@
 # ServerRoomMonitoringApp
+[![CI](https://github.com/TPiechocki/ServerRoomMonitoringApp/actions/workflows/docker_build_and_push.yml/badge.svg?branch=develop)](https://github.com/TPiechocki/ServerRoomMonitoringApp/actions/workflows/docker_build_and_push.yml)
 
 # Docker
 
