@@ -40,6 +40,6 @@ For this action credentials are needed so contact t.piechocki@yahoo.com if you n
 ### Compose
 In base repo folder run :
 
-`docker compose -f .\docker-compose.yml -p SI_175690 up -d`
+`docker stack deploy -c docker-compose.yml SI_175690`
 
 It will expose the app on 17569 port.
