@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Magda\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Magda\\.nuget\\packages"
+    ]
+  }
+}
