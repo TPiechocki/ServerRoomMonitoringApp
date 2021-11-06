@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "nZyCHyuj1YhvT4aLAaLzYh290R695cS13aGtdPBzAftOCph0QsDbUhul0qf+ulfbWJ36K3jmi70SzpUq4NCkPQ==",
+  "success": true,
+  "projectFilePath": "D:\\Rozalia\\semestr_7\\.NET\\ServerRoomMonitoringApp\\ServerRoomMonitoring.Generator\\ServerRoomMonitoring.Generator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\rozal\\.nuget\\packages\\rabbitmq.client\\6.2.2\\rabbitmq.client.6.2.2.nupkg.sha512",
+    "C:\\Users\\rozal\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\rozal\\.nuget\\packages\\system.threading.channels\\4.7.1\\system.threading.channels.4.7.1.nupkg.sha512"
+  ],
+  "logs": []
+}
