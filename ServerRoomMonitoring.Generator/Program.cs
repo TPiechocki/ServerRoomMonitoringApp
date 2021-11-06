@@ -1,32 +1,49 @@
 using System;
 using RabbitMQ.Client;
-using System.Text;
+using ServerRoomMonitoringGenerator.Messaging;
+using ServerRoomMonitoringGenerator.Models;
 
-class Send
+namespace ServerRoomMonitoring.Generator
 {
-    public static void Main()
+    public class Program
     {
-        var factory = new ConnectionFactory() { HostName = "localhost" };
-        using (var connection = factory.CreateConnection())
-        using (var channel = connection.CreateModel())
+        public static void Main(string[] args)
         {
-            channel.QueueDeclare(queue: "hello",
-                                 durable: false,
-                                 exclusive: false,
-                                 autoDelete: false,
-                                 arguments: null);
+            var serverRoomMqUserName = "guest";
+            var serverRoomMqPassword = "guest";
+            var serverRoomMqServer = "localhost";
+            var port = 5672;
+            
+            var mq = new ServerRoomMq();
+            
+            var factory = new ConnectionFactory()
+            {
+                HostName = serverRoomMqServer, Port = port, UserName = serverRoomMqUserName,
+                Password = serverRoomMqPassword
+            };
+            
+            var delay = 2000;
+            
+            using (var connection = factory.CreateConnection())
+            using (var channel = connection.CreateModel())
+            {
 
-            string message = "Hello World!";
-            var body = Encoding.UTF8.GetBytes(message);
+                channel.QueueDeclare(queue: "server_queue",
+                    durable: true,
+                    exclusive: false,
+                    autoDelete: false,
+                    arguments: null);
 
-            channel.BasicPublish(exchange: "",
-                                 routingKey: "hello",
-                                 basicProperties: null,
-                                 body: body);
-            Console.WriteLine(" [x] Sent {0}", message);
+                var tempSensor = new TemperatureSensor();
+
+                while (true)
+                {
+                    tempSensor.generateValues();
+                    mq.SendMessage(channel, tempSensor);
+                    System.Threading.Thread.Sleep(delay);
+                }
+            }
+
         }
-
-        Console.WriteLine(" Press [enter] to exit.");
-        Console.ReadLine();
     }
 }
