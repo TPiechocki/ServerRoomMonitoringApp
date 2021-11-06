@@ -22,5 +22,23 @@ services:
             - 15672:15672
         networks:
             - network
+    mongodb:
+        # ATM:
+        # I am not sure what I am doing - this will create image of mongodb(?)
+        # Taken from https://www.bmc.com/blogs/mongodb-docker-container/
+        # Varables bellow do not nessesarily have right values yet.
+        # Image taken from https://hub.docker.com/_/mongo
+        image : mongo:5.0
+        container_name: mongodb
+        environment:
+        - PUID=1000
+        - PGID=1000
+        volumes:
+        # To save DB on host computer and not inside the container
+        # (?) container path must by /data/db (?)
+        - ./MongoDB:/data/db
+        ports:
+        - 27017:27017
+        restart: unless-stopped
 networks:
   network: {}
