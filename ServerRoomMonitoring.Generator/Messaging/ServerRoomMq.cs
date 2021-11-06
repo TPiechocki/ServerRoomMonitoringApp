@@ -3,6 +3,7 @@ using System.Text;
 using RabbitMQ.Client;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace ServerRoomMonitoringGenerator.Messaging
 {
@@ -11,7 +12,7 @@ namespace ServerRoomMonitoringGenerator.Messaging
 
         public void SendMessage<T>(IModel channel, T sensor)
         {
-            string sensorData = sensor.ToString();
+            var sensorData = JsonConvert.SerializeObject(sensor);
             var body = Encoding.UTF8.GetBytes(sensorData);
             
             channel.BasicPublish(exchange: "",

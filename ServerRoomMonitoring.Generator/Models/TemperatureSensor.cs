@@ -13,9 +13,5 @@ namespace ServerRoomMonitoringGenerator.Models
             Temperature = random.Next(-20,40);
             Unit = "Celcius";
         }
-        public override string ToString()
-        {
-            return $"Temperature: {Temperature}, Unit: {Unit}";
-        }
     }
 }
