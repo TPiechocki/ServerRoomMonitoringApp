@@ -1,0 +1,20 @@
+{
+  "1": {
+    "minRange": 10,
+    "maxRange": 30,
+    "unit": "Celcius",
+    "delay": 100
+  },
+  "2": {
+    "minRange": -5,
+    "maxRange": 20,
+    "unit": "Celcius",
+    "delay": 200
+  },
+  "3": {
+    "minRange": 0,
+    "maxRange": 40,
+    "unit": "Celcius",
+    "delay": 1000
+  }
+}

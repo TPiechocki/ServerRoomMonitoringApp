@@ -1,7 +1,6 @@
-using System;
-using RabbitMQ.Client;
-using ServerRoomMonitoringGenerator.Messaging;
-using ServerRoomMonitoringGenerator.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace ServerRoomMonitoring.Generator
 {
@@ -9,41 +8,19 @@ namespace ServerRoomMonitoring.Generator
     {
         public static void Main(string[] args)
         {
-            var serverRoomMqUserName = "guest";
-            var serverRoomMqPassword = "guest";
-            var serverRoomMqServer = "localhost";
-            var port = 5672;
-            
-            var mq = new ServerRoomMq();
-            
-            var factory = new ConnectionFactory()
-            {
-                HostName = serverRoomMqServer, Port = port, UserName = serverRoomMqUserName,
-                Password = serverRoomMqPassword
-            };
-            
-            var delay = 2000;
-            
-            using (var connection = factory.CreateConnection())
-            using (var channel = connection.CreateModel())
-            {
+            CreateWebHostBuilder(args).Build().Run();
 
-                channel.QueueDeclare(queue: "server_queue",
-                    durable: true,
-                    exclusive: false,
-                    autoDelete: false,
-                    arguments: null);
+        }
 
-                var tempSensor = new TemperatureSensor();
-
-                while (true)
+        private static IHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            return Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    tempSensor.generateValues();
-                    mq.SendMessage(channel, tempSensor);
-                    System.Threading.Thread.Sleep(delay);
-                }
-            }
-
+                    webBuilder.UseStartup<Startup>();
+                })
+                .ConfigureAppConfiguration((context,builder) =>
+                    builder.AddJsonFile("ServerRoom.json", false, true));
         }
     }
 }
