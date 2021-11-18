@@ -2,3 +2,4 @@
 .docker/rabbitmq/logs/*
 
 .vs
+/.idea/
