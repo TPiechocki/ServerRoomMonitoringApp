@@ -1,4 +1,5 @@
 ﻿using System;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace ServerRoomLibrary.Models
 {
@@ -15,6 +16,7 @@ namespace ServerRoomLibrary.Models
             
         }
 
+        [BsonId]
         public int Id { get; set; }
         public string SensorType { get; set; }
         public int Value { get; set; }
