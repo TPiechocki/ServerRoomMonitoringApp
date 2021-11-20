@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using RabbitMQ.Client;
 using ServerRoomMonitoring.Api.Config;
-using ServerRoomMonitoring.Api.Models;
 using ServerRoomMonitoring.Api.Services;
+using ServerRoomMonitoring.Web.Models;
 
 namespace ServerRoomMonitoring.Api.Controllers
 {

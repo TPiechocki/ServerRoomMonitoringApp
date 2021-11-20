@@ -1,8 +1,6 @@
-﻿
-
-using System.Collections.Generic;
-using ServerRoomMonitoring.Api.Models;
+﻿using System.Collections.Generic;
 using ServerRoomMonitoring.Api.Repository;
+using ServerRoomMonitoring.Web.Models;
 
 namespace ServerRoomMonitoring.Api.Services
 {

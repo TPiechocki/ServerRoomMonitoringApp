@@ -7,8 +7,8 @@ using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using ServerRoomMonitoring.Api.Config;
-using ServerRoomMonitoring.Api.Models;
 using ServerRoomMonitoring.Api.Services;
+using ServerRoomMonitoring.Web.Models;
 
 namespace ServerRoomMonitoring.Api.Listeners
 {

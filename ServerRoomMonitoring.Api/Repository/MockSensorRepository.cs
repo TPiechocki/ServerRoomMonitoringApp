@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ServerRoomMonitoring.Api.Models;
+using ServerRoomMonitoring.Web.Models;
 
 namespace ServerRoomMonitoring.Api.Repository
 {

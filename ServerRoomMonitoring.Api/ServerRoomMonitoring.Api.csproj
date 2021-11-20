@@ -14,6 +14,11 @@
   <ItemGroup>
     <Folder Include="Config" />
     <Folder Include="Liseners" />
+    <Folder Include="Models" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ServerRoomMonitoring.Web\ServerRoomMonitoring.Web.csproj" />
   </ItemGroup>
 
 </Project>

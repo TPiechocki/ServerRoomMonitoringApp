@@ -6,6 +6,13 @@ services:
             - 8080:80
         networks:
             - network
+    serverroom-api:
+        container_name: serverroom-api
+        image: local/serverroom-api
+        ports:
+            - 8081:81
+        networks:
+            - network
     rabbitmq:
         image: rabbitmq:3-management-alpine
         container_name: rabbitmq

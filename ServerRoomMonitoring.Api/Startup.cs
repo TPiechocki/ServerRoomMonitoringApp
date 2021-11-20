@@ -13,7 +13,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using ServerRoomMonitoring.Api.Config;
 using ServerRoomMonitoring.Api.Listeners;
-using ServerRoomMonitoring.Api.Models;
 using ServerRoomMonitoring.Api.Repository;
 using ServerRoomMonitoring.Api.Services;
 
