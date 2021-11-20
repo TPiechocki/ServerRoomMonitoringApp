@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using ServerRoomMonitoring.Web.Models;
+using ServerRoomLibrary.Models;
 
-namespace ServerRoomMonitoring.Api.Services
+namespace ServerRoomLibrary.Services
 {
     public interface ISensorService
     {

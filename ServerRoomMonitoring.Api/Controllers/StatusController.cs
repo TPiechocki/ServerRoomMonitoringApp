@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using RabbitMQ.Client;
+using ServerRoomLibrary.Models;
+using ServerRoomLibrary.Services;
 using ServerRoomMonitoring.Api.Config;
-using ServerRoomMonitoring.Api.Services;
-using ServerRoomMonitoring.Web.Models;
 
 namespace ServerRoomMonitoring.Api.Controllers
 {

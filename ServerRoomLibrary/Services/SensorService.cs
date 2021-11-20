@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using ServerRoomMonitoring.Api.Repository;
-using ServerRoomMonitoring.Web.Models;
+using ServerRoomLibrary.Models;
+using ServerRoomLibrary.Repository;
 
-namespace ServerRoomMonitoring.Api.Services
+namespace ServerRoomLibrary.Services
 {
     public class SensorService: ISensorService
     {

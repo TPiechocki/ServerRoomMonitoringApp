@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ServerRoomMonitoring.Web\ServerRoomMonitoring.Web.csproj" />
+    <ProjectReference Include="..\ServerRoomLibrary\ServerRoomLibrary.csproj" />
   </ItemGroup>
 
 </Project>

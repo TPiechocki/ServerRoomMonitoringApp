@@ -6,9 +6,9 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using ServerRoomLibrary.Models;
+using ServerRoomLibrary.Services;
 using ServerRoomMonitoring.Api.Config;
-using ServerRoomMonitoring.Api.Services;
-using ServerRoomMonitoring.Web.Models;
 
 namespace ServerRoomMonitoring.Api.Listeners
 {
