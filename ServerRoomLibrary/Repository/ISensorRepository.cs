@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using ServerRoomMonitoring.Api.Models;
+﻿using System.Collections.Generic;
+using ServerRoomLibrary.Models;
 
-namespace ServerRoomMonitoring.Api.Repository
+namespace ServerRoomLibrary.Repository
 {
     public interface ISensorRepository
     {

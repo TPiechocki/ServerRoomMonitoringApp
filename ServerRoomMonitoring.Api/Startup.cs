@@ -11,11 +11,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
+using ServerRoomLibrary.Models;
+using ServerRoomLibrary.Repository;
+using ServerRoomLibrary.Services;
 using ServerRoomMonitoring.Api.Config;
 using ServerRoomMonitoring.Api.Listeners;
-using ServerRoomMonitoring.Api.Models;
-using ServerRoomMonitoring.Api.Repository;
-using ServerRoomMonitoring.Api.Services;
 
 
 namespace ServerRoomMonitoring.Api
@@ -32,7 +33,10 @@ namespace ServerRoomMonitoring.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.Configure<SensorsDatabaseSettings>(Configuration.GetSection(nameof(SensorsDatabaseSettings)));
+            
+            services.AddSingleton<ISensorsDatabaseSettings>(sp => sp.GetRequiredService<IOptions<SensorsDatabaseSettings>>().Value);
+            
             services.AddControllers();
             
             services.AddConfig(Configuration);
@@ -43,7 +47,7 @@ namespace ServerRoomMonitoring.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ServerRoomMonitoring.Api", Version = "v1" });
             });
 
-            services.AddSingleton<ISensorRepository, MockSensorRepository>();
+            services.AddSingleton<ISensorRepository, DBSensorRepository>();
             services.AddSingleton<ISensorService, SensorService>();
         }
 
