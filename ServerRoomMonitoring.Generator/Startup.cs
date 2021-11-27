@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using ServerRoomMonitoring.Generator.Conditions;
 using ServerRoomMonitoring.Generator.Config;
 using ServerRoomMonitoring.Generator.Messaging;
 using ServerRoomMonitoring.Generator.Models;
@@ -27,7 +26,6 @@ namespace ServerRoomMonitoring.Generator
 
             services.Configure<RabbitConfig>(Configuration.GetSection("RabbitMq"));
             services.AddSingleton<ISensorQueue, SensorQueue>();
-            services.AddSingleton<IStatus, Status>();
             services.AddSingleton<IServerRoom, ServerRoom>();
             services.AddSingleton<IStopper, Stopper>();
             services.AddHostedService<GeneratorBackgroundService>();

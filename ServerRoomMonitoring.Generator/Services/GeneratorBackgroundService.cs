@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using ServerRoomLibrary.Models;
-using ServerRoomMonitoring.Generator.Conditions;
 using ServerRoomMonitoring.Generator.Messaging;
 using ServerRoomMonitoring.Generator.Models;
 using Sensor = ServerRoomMonitoring.Generator.Models.Sensor;
@@ -14,14 +13,12 @@ namespace ServerRoomMonitoring.Generator.Services
     public class GeneratorBackgroundService : BackgroundService
     {
         private ISensorQueue _queue;
-        private readonly  IStatus _status;
         private IServerRoom _serverRoom;
         private IStopper _stopper;
         
-        public GeneratorBackgroundService(ISensorQueue queue, IStatus status, IServerRoom serverRoom, IStopper stopper)
+        public GeneratorBackgroundService(ISensorQueue queue, IServerRoom serverRoom, IStopper stopper)
         {
             _queue = queue;
-            _status = status;
             _serverRoom = serverRoom;
             _stopper = stopper;
         }
