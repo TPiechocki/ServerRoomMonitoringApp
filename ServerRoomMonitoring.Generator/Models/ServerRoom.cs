@@ -7,11 +7,11 @@ namespace ServerRoomMonitoring.Generator.Models
 {
     public class ServerRoom: IServerRoom
     {
-        public  List<Sensor> Sensors { get; set; }
+        public  List<ISensor> Sensors { get; set; }
 
         public ServerRoom(IConfiguration configuration)
         {
-            Sensors = new List<Sensor>
+            Sensors = new List<ISensor>
             {
                 new Sensor(1, configuration),
                 new Sensor(2, configuration),

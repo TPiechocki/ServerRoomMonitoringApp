@@ -5,9 +5,9 @@ using ServerRoomLibrary.Models;
 
 namespace ServerRoomMonitoring.Generator.Models
 {
-    public class Sensor
+    public class Sensor : ISensor
     {
-        private int _sensorId { get; set; }
+        public int _sensorId { get; set; }
         public SensorConfig _config { get; }
 
         public Sensor(int id, IConfiguration configuration)

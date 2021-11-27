@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using ServerRoomMonitoring.Generator.Conditions;
 using ServerRoomMonitoring.Generator.Config;
 using ServerRoomMonitoring.Generator.Messaging;
@@ -28,13 +29,22 @@ namespace ServerRoomMonitoring.Generator
             services.AddSingleton<ISensorQueue, SensorQueue>();
             services.AddSingleton<IStatus, Status>();
             services.AddSingleton<IServerRoom, ServerRoom>();
+            services.AddSingleton<IStopper, Stopper>();
             services.AddHostedService<GeneratorBackgroundService>();
+
+            services.AddControllers();
 
         }
         
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseRouting();
+
             
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
         
         
