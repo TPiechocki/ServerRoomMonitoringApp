@@ -6,9 +6,8 @@ using System.Text.Json.Serialization;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using ServerRoomMonitoring.Generator.Config;
-using ServerRoomMonitoring.Generator.Models;
-using ServerRoomMonitoring.Generator.Messaging;
 using Microsoft.Extensions.Logging;
+using ServerRoomLibrary.Models;
 
 namespace ServerRoomMonitoring.Generator.Messaging
 {

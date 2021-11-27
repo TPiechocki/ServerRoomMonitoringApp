@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
+using ServerRoomLibrary.Models;
 using ServerRoomMonitoring.Generator.Conditions;
 using ServerRoomMonitoring.Generator.Messaging;
 using ServerRoomMonitoring.Generator.Models;

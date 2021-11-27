@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
 using ServerRoomMonitoring.Generator.Config;
+using ServerRoomLibrary.Models;
 
 namespace ServerRoomMonitoring.Generator.Models
 {
@@ -20,21 +21,8 @@ namespace ServerRoomMonitoring.Generator.Models
             Random random = new Random();
             var sensorValue = random.Next(_config.minRange, _config.maxRange);
             var unit = _config.unit;
-            
-            return new SensorMessage
-            {
-                Id = _sensorId,
-                Value = sensorValue,
-                Unit = unit
-                
-            };
+
+            return new(_sensorId, "Temperature", sensorValue, "C", DateTime.Now);
         }
-    }
-    // obiekt dto
-    public class SensorMessage
-    {
-        public int Id { get; set; }
-        public int Value { get; set; }
-        public string Unit { get; set; }
     }
 }

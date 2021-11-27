@@ -1,4 +1,4 @@
-﻿using ServerRoomMonitoring.Generator.Models;
+﻿using ServerRoomLibrary.Models;
 
 namespace ServerRoomMonitoring.Generator.Messaging
 {
