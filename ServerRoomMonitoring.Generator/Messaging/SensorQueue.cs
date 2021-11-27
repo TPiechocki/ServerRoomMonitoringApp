@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using ServerRoomMonitoring.Generator.Config;
 using ServerRoomMonitoring.Generator.Models;
 using ServerRoomMonitoring.Generator.Messaging;
+using Microsoft.Extensions.Logging;
 
 namespace ServerRoomMonitoring.Generator.Messaging
 {
@@ -19,8 +20,12 @@ namespace ServerRoomMonitoring.Generator.Messaging
         private readonly string _username;
         private IConnection _connection;
 
-        public SensorQueue(IOptions<RabbitConfig> rabbitMqOptions)
+        private readonly ILogger<SensorQueue> _logger;
+
+        public SensorQueue(IOptions<RabbitConfig> rabbitMqOptions, ILogger<SensorQueue> logger)
         {
+            _logger = logger;
+
             _queueName = rabbitMqOptions.Value.QueueName;
             _hostname = rabbitMqOptions.Value.Hostname;
             _username = rabbitMqOptions.Value.UserName;
@@ -43,6 +48,10 @@ namespace ServerRoomMonitoring.Generator.Messaging
                         null);
                 }
             }
+            else
+            {
+                _logger.LogError("Connection does not exists.");
+            }
         }
 
         public void SendMessage(SensorMessage message)
@@ -59,7 +68,7 @@ namespace ServerRoomMonitoring.Generator.Messaging
                         basicProperties: null,
                         body: body);
                     
-                    Console.WriteLine("{0} has been sent to the queue.", json);
+                    _logger.LogInformation("{0} has been sent to the queue.", json);
                 }
             }
             
@@ -79,7 +88,7 @@ namespace ServerRoomMonitoring.Generator.Messaging
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Could not create connection: {e.Message}");
+               _logger.LogError($"Could not create connection: {e.Message}");
             }
         }
         

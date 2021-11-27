@@ -2,6 +2,6 @@
 {
     public interface IStatus
     {
-        public bool Stopped { get; set; }
+        bool Stopped { get; set; }
     }
 }
