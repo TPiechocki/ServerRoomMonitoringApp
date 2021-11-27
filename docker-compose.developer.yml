@@ -6,6 +6,13 @@ services:
             - 8080:80
         networks:
             - network
+    serverroom-api:
+        container_name: serverroom-api
+        image: local/serverroom-api
+        ports:
+            - 8081:81
+        networks:
+            - network
     rabbitmq:
         image: rabbitmq:3-management-alpine
         container_name: rabbitmq
@@ -24,6 +31,7 @@ services:
             - network
     mongodb:
         # ATM:
+        # mongo -u dev1 -p password1 --authenticationDatabase server-db
         # I am not sure what I am doing - this will create image of mongodb(?)
         # Taken from https://www.bmc.com/blogs/mongodb-docker-container/
         # Varables bellow do not nessesarily have right values yet.
@@ -31,11 +39,11 @@ services:
         image : mongo:5.0
         container_name: mongodb
         environment:
-        - PUID=1000
-        - PGID=1000
+            MONGO_INITDB_DATABASE: server-db
+            MONGO_INITDB_ROOT_USERNAME: admin1
+            MONGO_INITDB_ROOT_PASSWORD: password1
         volumes:
-        # To save DB on host computer and not inside the container
-        # (?) container path must by /data/db (?)
+        - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
         - ./MongoDB:/data/db
         ports:
         - 27017:27017

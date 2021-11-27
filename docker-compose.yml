@@ -7,6 +7,12 @@ services:
             - 17569:80
         networks:
             - network
+    serverroom-api:
+        image: tpiechocki/si_175690_api
+        ports:
+            - 17570:81
+        networks:
+            - network
     rabbitmq:
         image: rabbitmq:3-management-alpine
         environment:
