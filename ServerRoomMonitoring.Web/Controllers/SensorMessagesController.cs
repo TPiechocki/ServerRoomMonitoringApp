@@ -32,10 +32,7 @@ namespace ServerRoomMonitoring.Web.Controllers
         {
             return View("Index", _context.GetAllSensors());
         }
-        
-        //[HttpGet]
-        //[Produces("text/csv")]
-        public IActionResult GetDataAsCsv()
+        public IActionResult DownloadCsv()
         {
             var csvString = GenerateCSVString();  
             var fileName = "CsvData " + DateTime.Now.ToString() + ".csv";  
@@ -63,10 +60,7 @@ namespace ServerRoomMonitoring.Web.Controllers
                 sb.AppendLine();  
             }  
             return sb.ToString();  
-        }  
-        
-        //[HttpGet]
-        //[Produces("text/json")]
+        }
         public IActionResult DownloadJson()
         {
             var sensors = _context.GetAllSensors();
@@ -75,6 +69,5 @@ namespace ServerRoomMonitoring.Web.Controllers
               
             return File(byteArray, "application/force-download", "JsonData"+ DateTime.Now.ToString() + ".json");
         }
-
     }
 }
