@@ -1,10 +1,15 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Net.Http.Headers;
 using ServerRoomMonitoring.Web.Config;
 using ServerRoomLibrary.Repository;
+using ServerRoomMonitoring.Web.Controllers;
+
 
 namespace ServerRoomMonitoring.Web
 {

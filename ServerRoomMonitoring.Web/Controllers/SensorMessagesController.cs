@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+
 using ServerRoomLibrary.Models;
 using ServerRoomLibrary.Repository;
-using ServerRoomMonitoring.Web.Data;
+
 
 namespace ServerRoomMonitoring.Web.Controllers
 {
@@ -30,6 +31,49 @@ namespace ServerRoomMonitoring.Web.Controllers
         public IActionResult Reload()
         {
             return View("Index", _context.GetAllSensors());
+        }
+        
+        //[HttpGet]
+        //[Produces("text/csv")]
+        public IActionResult GetDataAsCsv()
+        {
+            var csvString = GenerateCSVString();  
+            var fileName = "CsvData " + DateTime.Now.ToString() + ".csv";  
+            return File(new System.Text.UTF8Encoding().GetBytes(csvString), "text/csv", fileName);  
+        }
+        private string GenerateCSVString()
+        {
+            var sensors = _context.GetAllSensors();
+            StringBuilder sb = new StringBuilder(); 
+            sb.Append("Id,");
+            sb.Append("SensorType,");
+            sb.Append("Value,");  
+            sb.Append("Unit,");  
+            sb.Append("Date");  
+            sb.AppendLine();  
+            foreach (var sensor in sensors)
+            {
+                sb.Append(sensor.Id);  
+                sb.Append(',');  
+                sb.Append(sensor.SensorType + ',');  
+                sb.Append(sensor.Value);  
+                sb.Append(',');  
+                sb.Append(sensor.Unit + ',');  
+                sb.Append(sensor.Date);  
+                sb.AppendLine();  
+            }  
+            return sb.ToString();  
+        }  
+        
+        //[HttpGet]
+        //[Produces("text/json")]
+        public IActionResult DownloadJson()
+        {
+            var sensors = _context.GetAllSensors();
+            var jsonstr = System.Text.Json.JsonSerializer.Serialize(sensors);
+            byte[] byteArray = System.Text.ASCIIEncoding.ASCII.GetBytes(jsonstr);
+              
+            return File(byteArray, "application/force-download", "JsonData"+ DateTime.Now.ToString() + ".json");
         }
 
     }

@@ -9,6 +9,14 @@
 {
    <input type="submit" value="Odśwież" />
 }
+@using (Html.BeginForm(actionName: "GetDataAsCsv", "SensorMessages", method: FormMethod.Get))
+{
+   <input type="submit" value="Pobierz csv" />
+}
+@using (Html.BeginForm(actionName: "DownloadJson", "SensorMessages", method: FormMethod.Get))
+{
+   <input type="submit" value="Pobierz json" />
+}
 <table class="table">
     <thead>
         <tr>
