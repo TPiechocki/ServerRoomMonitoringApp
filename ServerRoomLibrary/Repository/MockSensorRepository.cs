@@ -34,9 +34,9 @@ namespace ServerRoomLibrary.Repository
             return Sensors;
         }
 
-        public void AddSensor(SensorMessage sensorMessage)
+        public void AddSensor(SensorMessage sensor)
         {
-            Sensors.Add(sensorMessage);
+            Sensors.Add(sensor);
         }
 
         public List<SensorMessage> GetByTypeSensors(string type)

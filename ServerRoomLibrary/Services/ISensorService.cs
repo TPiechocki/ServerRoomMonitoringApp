@@ -7,7 +7,7 @@ namespace ServerRoomLibrary.Services
     {
         public List<SensorMessage> GetAllSensors();
 
-        public void AddSensor(SensorMessage sensorMessage);
+        public void AddSensor(SensorMessage sensor);
         
         public List<SensorMessage> GetByTypeSensors(string type);
 

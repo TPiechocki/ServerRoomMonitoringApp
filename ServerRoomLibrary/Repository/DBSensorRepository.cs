@@ -16,11 +16,11 @@ namespace ServerRoomLibrary.Repository
 
             _sensors = database.GetCollection<SensorMessage>(settings.CollectionName);
             
-            var Sensors = new List<SensorMessage>
+            var sensors = new List<SensorMessage>
             {
                 new(1, "Temperature", 22, "C",DateTime.Now),
-                new(2, "Temperature", 23, "C",DateTime.Now),
-                new(3,"Temperature",21,"C",DateTime.Now),
+                new(1, "Temperature", 23, "C",DateTime.Now),
+                new(1,"Temperature",21,"C",DateTime.Now),
                 new(4,"Temperature",20,"C",DateTime.Now),
                 new(5,"Temperature",21,"C",DateTime.Now),
                 new(6,"Voltage",212,"V",DateTime.Now),
@@ -28,13 +28,13 @@ namespace ServerRoomLibrary.Repository
                 new(8,"Temperature",19,"C",DateTime.Now),
                 new(9,"Temperature",21,"C",DateTime.Now),
                 new(10,"Temperature",20,"C",DateTime.Now),
-                new(11,"Temperature",21,"C",DateTime.Now),
-                new(12,"Temperature",22,"C",DateTime.Now),
-                new(13,"Voltage",213,"V",DateTime.Now),
+                new(10,"Temperature",21,"C",DateTime.Now),
+                new(11,"Temperature",22,"C",DateTime.Now),
+                new(11,"Voltage",213,"V",DateTime.Now),
                 new(14,"Voltage",200,"V",DateTime.Now),
             };
 
-            foreach (var var in Sensors)
+            foreach (var var in sensors)
             {
                 _sensors.InsertOne(var);
             }
@@ -46,9 +46,9 @@ namespace ServerRoomLibrary.Repository
             return _sensors.Find(sensor => true).ToList();
         }
 
-        public void AddSensor(SensorMessage sensorMessage)
+        public void AddSensor(SensorMessage sensor)
         {
-            _sensors.InsertOne(sensorMessage);
+            _sensors.InsertOne(sensor);
         }
 
         public List<SensorMessage> GetByTypeSensors(string type)
