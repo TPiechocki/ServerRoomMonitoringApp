@@ -1,13 +1,15 @@
 ﻿using System;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace ServerRoomLibrary.Models
 {
     public class SensorMessage
     {
-        public SensorMessage(int id, string sensorType, int value, string unit, DateTime  date)
+        public SensorMessage(int no, string sensorType, int value, string unit, DateTime  date)
         {
-            Id = id;
+            No = no;
+           // Id = null;
             SensorType = sensorType;
             Value = value;
             Unit = unit;
@@ -17,7 +19,8 @@ namespace ServerRoomLibrary.Models
         }
 
         [BsonId]
-        public int Id { get; set; }
+        public ObjectId _id { get; set; }
+        public int No { get; set; }
         public string SensorType { get; set; }
         public int Value { get; set; }
         public string Unit { get; set; }

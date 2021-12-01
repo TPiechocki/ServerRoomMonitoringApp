@@ -53,7 +53,23 @@ namespace ServerRoomLibrary.Repository
 
         public List<SensorMessage> GetByTypeSensors(string type)
         {
-            throw new System.NotImplementedException();
+            return _sensors.Find(x => x.SensorType.Equals(type)).ToList();
+        }
+        
+        public List<SensorMessage> GetByInstanceSensors(int no)
+        {
+            return _sensors.Find(sensor => true).ToList();
+        }
+        
+        public List<SensorMessage> GetByDateSensors(DateTime date)
+        {
+            return _sensors.Find(sensor => DateTime.Compare(sensor.Date,date) >= 0).ToList();
+        }
+
+        public List<SensorMessage> GetByDateSensors(DateTime dateStart, DateTime dateEnd)
+        {
+            return _sensors.Find(sensor =>
+                DateTime.Compare(sensor.Date, dateStart) >= 0 && DateTime.Compare(sensor.Date, dateEnd) <= 0).ToList();
         }
     }
 }

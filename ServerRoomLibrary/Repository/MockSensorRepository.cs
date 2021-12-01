@@ -43,5 +43,20 @@ namespace ServerRoomLibrary.Repository
         {
             return Sensors.FindAll(x => x.SensorType.Equals(type));
         }
+
+        public List<SensorMessage> GetByInstanceSensors(int no)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SensorMessage> GetByDateSensors(DateTime date)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SensorMessage> GetByDateSensors(DateTime dateStart, DateTime dateEnd)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,6 +1,8 @@
 services:
     serverroom-web:
         container_name: serverroom-web
+        build:
+            dockerfile: ServerRoomMonitoring.Web.Dockerfile
         image: local/serverroom-web
         ports:
             - 8080:80
@@ -8,6 +10,8 @@ services:
             - network
     serverroom-api:
         container_name: serverroom-api
+        build:
+            dockerfile: ServerRoomMonitoring.Api.Dockerfile
         image: local/serverroom-api
         ports:
             - 8081:81
