@@ -1,4 +1,12 @@
-﻿@model IEnumerable<ServerRoomLibrary.Models.SensorMessage>
+﻿@using ServerRoomLibrary.Models
+@using System.Windows.Forms.DataVisualization.Charting
+
+@using Highsoft.Web.Mvc.Charts
+@using Highsoft.Web.Mvc.Charts.Rendering;
+<script src = "http://code.highcharts.com/highcharts.js"></script>
+<script src = "https://code.highcharts.com/modules/exporting.js"></script>
+
+@model IEnumerable<ServerRoomLibrary.Models.SensorMessage>
 
 @{
     ViewData["Title"] = "Index";
@@ -17,43 +25,45 @@
 {
    <input type="submit" value="Pobierz json" />
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.SensorType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Value)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Unit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div>
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SensorType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Unit)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-
+                <th>
+                    @Html.DisplayNameFor(model => model.SensorType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Value)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Unit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SensorType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Value)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Unit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+    
+                </tr>
+            }
+        </tbody>
+        
+        </table>
+</div>

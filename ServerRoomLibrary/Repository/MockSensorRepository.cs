@@ -27,6 +27,7 @@ namespace ServerRoomLibrary.Repository
                 new(12,"Temperature",22,"C",DateTime.Now),
                 new(6,"Voltage",213,"V",DateTime.Now),
                 new(7,"Voltage",200,"V",DateTime.Now),
+                
             };
         }
         public List<SensorMessage> GetAllSensors()
