@@ -13,17 +13,17 @@ namespace ServerRoomLibrary.Services
             _sensorRepository = sensorRepository;
         }
 
-        public List<SensorMessage> GetAllSensors()
+        public List<Sensor> GetAllSensors()
         {
             return _sensorRepository.GetAllSensors();
         }
 
-        public void AddSensor(SensorMessage sensor)
+        public void AddSensor(Sensor sensor)
         {
            _sensorRepository.AddSensor(sensor);
         }
 
-        public List<SensorMessage> GetByTypeSensors(string type)
+        public List<Sensor> GetByTypeSensors(string type)
         {
             return _sensorRepository.GetByTypeSensors(type);
         }

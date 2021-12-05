@@ -5,11 +5,11 @@ namespace ServerRoomLibrary.Services
 {
     public interface ISensorService
     {
-        public List<SensorMessage> GetAllSensors();
+        public List<Sensor> GetAllSensors();
 
-        public void AddSensor(SensorMessage sensor);
+        public void AddSensor(Sensor sensor);
         
-        public List<SensorMessage> GetByTypeSensors(string type);
+        public List<Sensor> GetByTypeSensors(string type);
 
        
     }

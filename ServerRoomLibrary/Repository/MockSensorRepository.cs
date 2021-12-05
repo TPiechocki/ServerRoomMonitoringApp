@@ -7,11 +7,11 @@ namespace ServerRoomLibrary.Repository
 {
     public class MockSensorRepository : ISensorRepository
     {
-        private List<SensorMessage> Sensors { get; set; }
+        private List<Sensor> Sensors { get; set; }
 
         public MockSensorRepository()
         {
-            Sensors = new List<SensorMessage>
+            Sensors = new List<Sensor>
             {
                 new(1, "Temperature", 22, "C",DateTime.Now),
                 new(2, "Temperature", 23, "C",DateTime.Now),
@@ -29,32 +29,32 @@ namespace ServerRoomLibrary.Repository
                 new(7,"Voltage",200,"V",DateTime.Now),
             };
         }
-        public List<SensorMessage> GetAllSensors()
+        public List<Sensor> GetAllSensors()
         {
             return Sensors;
         }
 
-        public void AddSensor(SensorMessage sensor)
+        public void AddSensor(Sensor sensor)
         {
             Sensors.Add(sensor);
         }
 
-        public List<SensorMessage> GetByTypeSensors(string type)
+        public List<Sensor> GetByTypeSensors(string type)
         {
             return Sensors.FindAll(x => x.SensorType.Equals(type));
         }
 
-        public List<SensorMessage> GetByInstanceSensors(int no)
+        public List<Sensor> GetByInstanceSensors(int no)
         {
             throw new NotImplementedException();
         }
 
-        public List<SensorMessage> GetByDateSensors(DateTime date)
+        public List<Sensor> GetByDateSensors(DateTime date)
         {
             throw new NotImplementedException();
         }
 
-        public List<SensorMessage> GetByDateSensors(DateTime dateStart, DateTime dateEnd)
+        public List<Sensor> GetByDateSensors(DateTime dateStart, DateTime dateEnd)
         {
             throw new NotImplementedException();
         }

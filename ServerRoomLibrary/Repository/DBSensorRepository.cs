@@ -7,16 +7,16 @@ namespace ServerRoomLibrary.Repository
 {
     public class DBSensorRepository : ISensorRepository
     {
-        private readonly IMongoCollection<SensorMessage> _sensors;
+        private readonly IMongoCollection<Sensor> _sensors;
         
         public DBSensorRepository(ISensorsDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _sensors = database.GetCollection<SensorMessage>(settings.CollectionName);
+            _sensors = database.GetCollection<Sensor>(settings.CollectionName);
             
-            var sensors = new List<SensorMessage>
+            var sensors = new List<Sensor>
             {
                 new(1, "Temperature", 22, "C",DateTime.Now),
                 new(1, "Temperature", 23, "C",DateTime.Now),
@@ -41,32 +41,32 @@ namespace ServerRoomLibrary.Repository
             
         }
 
-        public List<SensorMessage> GetAllSensors()
+        public List<Sensor> GetAllSensors()
         {
             return _sensors.Find(sensor => true).ToList();
         }
 
-        public void AddSensor(SensorMessage sensor)
+        public void AddSensor(Sensor sensor)
         {
             _sensors.InsertOne(sensor);
         }
 
-        public List<SensorMessage> GetByTypeSensors(string type)
+        public List<Sensor> GetByTypeSensors(string type)
         {
             return _sensors.Find(x => x.SensorType.Equals(type)).ToList();
         }
         
-        public List<SensorMessage> GetByInstanceSensors(int no)
+        public List<Sensor> GetByInstanceSensors(int no)
         {
             return _sensors.Find(sensor => true).ToList();
         }
         
-        public List<SensorMessage> GetByDateSensors(DateTime date)
+        public List<Sensor> GetByDateSensors(DateTime date)
         {
             return _sensors.Find(sensor => DateTime.Compare(sensor.Date,date) >= 0).ToList();
         }
 
-        public List<SensorMessage> GetByDateSensors(DateTime dateStart, DateTime dateEnd)
+        public List<Sensor> GetByDateSensors(DateTime dateStart, DateTime dateEnd)
         {
             return _sensors.Find(sensor =>
                 DateTime.Compare(sensor.Date, dateStart) >= 0 && DateTime.Compare(sensor.Date, dateEnd) <= 0).ToList();

@@ -8,18 +8,18 @@ namespace ServerRoomLibrary.Repository
     public interface ISensorRepository
     {
 
-        public List<SensorMessage> GetAllSensors();
+        public List<Sensor> GetAllSensors();
 
-        public void AddSensor(SensorMessage sensor);
+        public void AddSensor(Sensor sensor);
         
-        public List<SensorMessage> GetByTypeSensors(string type);
+        public List<Sensor> GetByTypeSensors(string type);
 
-        public List<SensorMessage> GetByInstanceSensors(int no);
+        public List<Sensor> GetByInstanceSensors(int no);
 
 
-        public List<SensorMessage> GetByDateSensors(DateTime date);
+        public List<Sensor> GetByDateSensors(DateTime date);
         
-        public List<SensorMessage> GetByDateSensors(DateTime dateStart, DateTime dateEnd);
+        public List<Sensor> GetByDateSensors(DateTime dateStart, DateTime dateEnd);
 
 
 

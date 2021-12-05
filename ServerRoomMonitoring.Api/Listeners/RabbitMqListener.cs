@@ -44,9 +44,15 @@ namespace ServerRoomMonitoring.Api.Listeners
                 var content = Encoding.UTF8.GetString(ea.Body.ToArray());
                 var updateCustomerFullNameModel = JsonConvert.DeserializeObject<SensorMessage>(content);
                 Console.WriteLine(" [x] Received {0}", content);
-                _sensorService.AddSensor(updateCustomerFullNameModel);
+                if (updateCustomerFullNameModel != null)
+                {
+                    var obj = new Sensor(updateCustomerFullNameModel.Id, updateCustomerFullNameModel.SensorType,
+                        updateCustomerFullNameModel.Value, updateCustomerFullNameModel.Unit,
+                        updateCustomerFullNameModel.Date);
+                    _sensorService.AddSensor(obj);
+                }
 
-               // var updateCustomerFullNameModel = JsonConvert.DeserializeObject<UpdateCustomerFullNameModel>(content);
+                // var updateCustomerFullNameModel = JsonConvert.DeserializeObject<UpdateCustomerFullNameModel>(content);
 
               //  HandleMessage(updateCustomerFullNameModel);
 
