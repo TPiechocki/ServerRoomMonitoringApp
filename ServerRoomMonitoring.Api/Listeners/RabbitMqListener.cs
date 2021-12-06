@@ -2,10 +2,12 @@
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using RabbitMQ.Client.Exceptions;
 using ServerRoomLibrary.Models;
 using ServerRoomLibrary.Services;
 using ServerRoomMonitoring.Api.Config;
@@ -16,16 +18,36 @@ namespace ServerRoomMonitoring.Api.Listeners
     {
         private readonly IModel _channel;
 
-        private ISensorService _sensorService;
-        public RabbitMqListener(IRabbitConfig rabbitConfig, ISensorService sensorService)
+       // private ISensorService _sensorService;
+       // ISensorService sensorService
+       private IServiceProvider _serviceProvider;
+        public RabbitMqListener(IRabbitConfig rabbitConfig,IServiceProvider serviceProvider)
         {
-            _sensorService = sensorService;
+            _serviceProvider = serviceProvider;
             var factory = new ConnectionFactory { HostName = rabbitConfig.HostName };
+
+            IConnection connection;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Try To connect");
+                    connection = factory.CreateConnection();
+                    Console.WriteLine("Connection Success");
+                    break;
+                }
+                catch (BrokerUnreachableException exception)
+                {
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Connection Fail");
+
+                }
+               
+            }
             
-            var connection = factory.CreateConnection();
             connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
             _channel = connection.CreateModel();
-            _channel.QueueDeclare(queue: "server_queue", durable: true, exclusive: false, autoDelete: false, arguments: null);
+            _channel.QueueDeclare(queue: "SensorQueue", durable: false, exclusive: false, autoDelete: false, arguments: null);
         }
 
         private void RabbitMQ_ConnectionShutdown(object? sender, ShutdownEventArgs e)
@@ -41,15 +63,19 @@ namespace ServerRoomMonitoring.Api.Listeners
             var consumer = new EventingBasicConsumer(_channel);
             consumer.Received += (ch, ea) =>
             {
+                using var scope = _serviceProvider.CreateScope();
+                var sensorService = scope.ServiceProvider.GetRequiredService<ISensorService>();
                 var content = Encoding.UTF8.GetString(ea.Body.ToArray());
                 var updateCustomerFullNameModel = JsonConvert.DeserializeObject<SensorMessage>(content);
                 Console.WriteLine(" [x] Received {0}", content);
-                _sensorService.AddSensor(updateCustomerFullNameModel);
-
-               // var updateCustomerFullNameModel = JsonConvert.DeserializeObject<UpdateCustomerFullNameModel>(content);
-
-              //  HandleMessage(updateCustomerFullNameModel);
-
+                if (updateCustomerFullNameModel != null)
+                {
+                    var obj = new Sensor(updateCustomerFullNameModel.Id, updateCustomerFullNameModel.SensorType,
+                        updateCustomerFullNameModel.Value, updateCustomerFullNameModel.Unit,
+                        updateCustomerFullNameModel.Date);
+                    sensorService.AddSensor(obj);
+                }
+                
                 _channel.BasicAck(ea.DeliveryTag, false);
             };
             consumer.Shutdown += OnConsumerShutdown;
@@ -57,7 +83,7 @@ namespace ServerRoomMonitoring.Api.Listeners
             consumer.Unregistered += OnConsumerUnregistered;
             consumer.ConsumerCancelled += OnConsumerCancelled;
 
-            _channel.BasicConsume("server_queue", false, consumer);
+            _channel.BasicConsume("SensorQueue", false, consumer);
             
             return Task.CompletedTask;
         }
