@@ -10,7 +10,7 @@ using Sensor = ServerRoomMonitoring.Generator.Models.Sensor;
 
 namespace ServerRoomMonitoring.Generator.Services
 {
-    public class GeneratorBackgroundService : BackgroundService
+    public class GeneratorBackgroundService : BackgroundService, IGeneratorBackgroundService
     {
         private ISensorQueue _queue;
         private IServerRoom _serverRoom;

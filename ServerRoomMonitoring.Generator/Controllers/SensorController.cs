@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Hosting;
 using ServerRoomMonitoring.Generator.Models;
 using ServerRoomMonitoring.Generator.Services;
-using ServerRoomMonitoringGenerator.Services;
 using System.Threading;
 using System.Threading.Tasks;
 

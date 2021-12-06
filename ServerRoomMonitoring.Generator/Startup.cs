@@ -27,6 +27,7 @@ namespace ServerRoomMonitoring.Generator
             services.AddSingleton<ISensorQueue, SensorQueue>();
             services.AddSingleton<IServerRoom, ServerRoom>();
             services.AddSingleton<IStopper, Stopper>();
+            services.AddSingleton<IGeneratorBackgroundService, GeneratorBackgroundService>();
             services.AddHostedService<GeneratorBackgroundService>();
 
             services.AddControllers();
