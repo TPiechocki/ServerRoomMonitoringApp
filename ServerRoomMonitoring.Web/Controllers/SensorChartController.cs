@@ -24,7 +24,7 @@ namespace ServerRoomMonitoring.Web.Controllers
         public JsonResult SensorChartTemperature()  
         {  
             var sensorList =  _context.GetAllSensors();
-            var temperatureList = new List<SensorMessage>();
+            var temperatureList = new List<Sensor>();
             
             
             foreach (var s in sensorList)
@@ -41,7 +41,7 @@ namespace ServerRoomMonitoring.Web.Controllers
         {  
             var sensorList =  _context.GetAllSensors();
        
-            var voltageList = new List<SensorMessage>();
+            var voltageList = new List<Sensor>();
             
             foreach (var s in sensorList)
             {
