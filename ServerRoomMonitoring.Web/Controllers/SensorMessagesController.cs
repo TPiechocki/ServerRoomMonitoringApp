@@ -9,15 +9,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 using ServerRoomLibrary.Models;
 using ServerRoomLibrary.Repository;
-
+using ServerRoomLibrary.Services;
 
 namespace ServerRoomMonitoring.Web.Controllers
 {
     public class SensorMessagesController : Controller
     {
-        private readonly ISensorRepository _context;
+        private readonly ISensorService _context;
 
-        public SensorMessagesController(ISensorRepository context)
+        public SensorMessagesController(ISensorService context)
         {
             _context = context;
         }

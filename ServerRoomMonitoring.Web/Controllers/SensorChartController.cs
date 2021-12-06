@@ -3,15 +3,16 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using ServerRoomLibrary.Models;
 using ServerRoomLibrary.Repository;
+using ServerRoomLibrary.Services;
 using ServerRoomMonitoring.Web.Models;
 
 namespace ServerRoomMonitoring.Web.Controllers
 {
     public class SensorChartController : Controller
     {
-        private readonly ISensorRepository _context;
+        private readonly ISensorService _context;
 
-        public SensorChartController(ISensorRepository context)
+        public SensorChartController(ISensorService context)
         {
             _context = context;
         }

@@ -9,7 +9,7 @@ using Microsoft.Net.Http.Headers;
 using ServerRoomMonitoring.Web.Config;
 using ServerRoomLibrary.Repository;
 using ServerRoomMonitoring.Web.Controllers;
-
+using ServerRoomLibrary.Services;
 
 namespace ServerRoomMonitoring.Web
 {
@@ -30,7 +30,8 @@ namespace ServerRoomMonitoring.Web
             // Configure DI
             services.AddConfig(Configuration);
 
-            services.AddSingleton<ISensorRepository, MockSensorRepository>();
+            services.AddScoped<ISensorRepository, MockSensorRepository>();
+            services.AddScoped<ISensorService, SensorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
