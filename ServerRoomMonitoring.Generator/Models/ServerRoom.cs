@@ -1,23 +1,39 @@
-﻿using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using ServerRoomMonitoring.Generator.Config;
-using ServerRoomMonitoring.Generator.Models;
+using System.Collections.Generic;
+using System.IO;
 
 namespace ServerRoomMonitoring.Generator.Models
 {
     public class ServerRoom: IServerRoom
     {
-        public  List<ISensor> Sensors { get; set; }
+        private readonly ILogger<ServerRoom> _logger;
 
-        public ServerRoom(IConfiguration configuration)
+        public List<ISensor> Sensors { get; set; }
+
+        public ServerRoom(ILogger<ServerRoom> logger)
         {
-            Sensors = new List<ISensor>
+            _logger = logger;
+
+            var configs = JsonConvert.DeserializeObject<List<SensorConfig>>(File.ReadAllText("ServerRoom.json"));
+            Sensors = SensorsFromConfig(configs);
+        }
+
+        public void UpdateSensors(IReadOnlyList<SensorConfig> configs)
+        {
+            Sensors = SensorsFromConfig(configs);
+        }
+
+        private List<ISensor> SensorsFromConfig(IReadOnlyList<SensorConfig> configs)
+        {
+            var Sensors = new List<ISensor>();
+            for (int i = 0; i < configs.Count; i++)
             {
-                new Sensor(1, configuration),
-                new Sensor(2, configuration),
-                new Sensor(3, configuration),
-                
-            };
+                Sensors.Add(new Sensor(i, configs[i]));
+            }
+            _logger.LogInformation("Setting new sensors");
+            return Sensors;
         }
     }
 }

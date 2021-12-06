@@ -1,21 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting;
-using ServerRoomMonitoring.Generator.Models;
 using ServerRoomMonitoring.Generator.Services;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace ServerRoomMonitoringGenerator.Controllers
 {
     [Route("Sensor")]
     public class SensorController : Controller
     {
-        private IStopper _stopper;
-        private IGeneratorBackgroundService _service;
+        private readonly IGeneratorService _service;
         
-        public SensorController(IStopper stopper, IGeneratorBackgroundService service)
+        public SensorController(IGeneratorService service)
         {
-            _stopper = stopper;
             _service = service;
         }
 
@@ -23,17 +18,14 @@ namespace ServerRoomMonitoringGenerator.Controllers
         [Route("Stop")]
         public void Stop()
         {
-            _stopper.Stopped = true;
+            _service.Stop();
         }
 
         [HttpGet]
         [Route("Start")]
-        public void Start()
+        public void Start(CancellationToken cancellationToken)
         {
             _service.Start();
-            _stopper.Stopped = false;
-
         }
-
     }
 }
