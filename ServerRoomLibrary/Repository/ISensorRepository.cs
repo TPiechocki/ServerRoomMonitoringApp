@@ -9,6 +9,7 @@ namespace ServerRoomLibrary.Repository
     {
 
         public List<Sensor> GetAllSensors();
+        public List<Sensor> GetPageSensors(int elementFrom, int limit);
 
         public void AddSensor(Sensor sensor);
         

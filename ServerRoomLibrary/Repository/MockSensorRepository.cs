@@ -34,6 +34,11 @@ namespace ServerRoomLibrary.Repository
             return Sensors;
         }
 
+        public List<Sensor> GetPageSensors(int elementFrom, int limit)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddSensor(Sensor sensor)
         {
             Sensors.Add(sensor);

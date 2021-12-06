@@ -46,9 +46,9 @@ namespace ServerRoomMonitoring.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ServerRoomMonitoring.Api", Version = "v1" });
             });
-
-            services.AddSingleton<ISensorRepository, DBSensorRepository>();
-            services.AddSingleton<ISensorService, SensorService>();
+            
+            services.AddScoped<ISensorRepository, DBSensorRepository>();
+            services.AddScoped<ISensorService, SensorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
