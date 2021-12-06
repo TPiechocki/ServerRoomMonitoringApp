@@ -30,17 +30,17 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.SensorType)
-                </th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TypeSortParm"]">@Html.DisplayNameFor(model => model.SensorType)</a>
+</th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Value)
-                </th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["ValueSortParm"]">@Html.DisplayNameFor(model => model.Value)</a>
+</th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Unit)
-                </th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["UnitSortParm"]">@Html.DisplayNameFor(model => model.Unit)</a>
+</th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Date)
-                </th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.Date)</a>
+</th>
                 <th></th>
             </tr>
         </thead>

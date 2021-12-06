@@ -23,9 +23,45 @@ namespace ServerRoomMonitoring.Web.Controllers
         }
 
         // GET: SensorMessages
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
-            return View(_context.GetAllSensors());
+            ViewData["TypeSortParm"] = sortOrder == "Type" ? "type_desc" : "Type";
+            ViewData["ValueSortParm"] = sortOrder == "Value" ? "value_desc" : "Value";
+            ViewData["UnitSortParm"] = sortOrder == "Unit" ? "unit_desc" : "Unit";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            var sensors = from s in _context.GetAllSensors()
+                           select s;
+            switch (sortOrder)
+            {
+                case "Type":
+                    sensors = sensors.OrderBy(s => s.SensorType);
+                    break;
+                case "type_desc":
+                    sensors = sensors.OrderByDescending(s => s.SensorType);
+                    break;
+                case "Value":
+                    sensors = sensors.OrderBy(s => s.Value);
+                    break;
+                case "value_desc":
+                    sensors = sensors.OrderByDescending(s => s.Value);
+                    break;
+                case "Unit":
+                    sensors = sensors.OrderBy(s => s.Unit);
+                    break;
+                case "unit_desc":
+                    sensors = sensors.OrderByDescending(s => s.Unit);
+                    break;
+                case "Date":
+                    sensors = sensors.OrderBy(s => s.Date);
+                    break;
+                case "date_desc":
+                    sensors = sensors.OrderByDescending(s => s.Date);
+                    break;
+                default:
+                    sensors = sensors.OrderBy(s => s.SensorType);
+                    break;
+            }
+            return View(sensors);
         }
 
         [HttpPost]
