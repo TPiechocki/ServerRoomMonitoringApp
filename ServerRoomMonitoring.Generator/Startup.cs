@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using ServerRoomMonitoring.Generator.Config;
 using ServerRoomMonitoring.Generator.Messaging;
 using ServerRoomMonitoring.Generator.Models;
 using ServerRoomMonitoring.Generator.Services;
+using ServerRoomMonitoringGenerator.Services;
 
 namespace ServerRoomMonitoring.Generator
 {
@@ -26,9 +26,8 @@ namespace ServerRoomMonitoring.Generator
             services.Configure<RabbitConfig>(Configuration.GetSection("RabbitMq"));
             services.AddSingleton<ISensorQueue, SensorQueue>();
             services.AddSingleton<IServerRoom, ServerRoom>();
-            services.AddSingleton<IStopper, Stopper>();
-            services.AddSingleton<IGeneratorBackgroundService, GeneratorBackgroundService>();
-            services.AddHostedService<GeneratorBackgroundService>();
+            services.AddSingleton<IGeneratorService, GeneratorService>();
+            services.AddHostedService(sp => ActivatorUtilities.CreateInstance<InitService>(sp));
 
             services.AddControllers();
 
