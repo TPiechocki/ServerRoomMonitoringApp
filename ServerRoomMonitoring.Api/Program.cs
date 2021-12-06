@@ -14,11 +14,11 @@ namespace ServerRoomMonitoring.Api
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                //.ConfigureLogging(logging =>
-                //{
-                //    logging.ClearProviders();
-                //    logging.AddLog4Net();
-                //})
+                .ConfigureLogging(logging =>
+                {
+                    logging.ClearProviders();
+                    logging.AddLog4Net();
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
