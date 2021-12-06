@@ -1,18 +1,29 @@
 services:
     serverroom-web:
         container_name: serverroom-web
-        image: local/serverroom-web
+        build:
+            context: .
+            dockerfile: ServerRoomMonitoring.Web.Dockerfile    
         ports:
             - 8080:80
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Staging
         networks:
             - network
     serverroom-api:
         container_name: serverroom-api
-        image: local/serverroom-api
+        build:
+            context: .
+            dockerfile: ServerRoomMonitoring.Api.Dockerfile
         ports:
-            - 8081:81
+            - 8081:80
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Staging
         networks:
             - network
+        depends_on:
+            - mongodb
+            - rabbitmq
     rabbitmq:
         image: rabbitmq:3-management-alpine
         container_name: rabbitmq
@@ -30,12 +41,6 @@ services:
         networks:
             - network
     mongodb:
-        # ATM:
-        # mongo -u dev1 -p password1 --authenticationDatabase server-db
-        # I am not sure what I am doing - this will create image of mongodb(?)
-        # Taken from https://www.bmc.com/blogs/mongodb-docker-container/
-        # Varables bellow do not nessesarily have right values yet.
-        # Image taken from https://hub.docker.com/_/mongo
         image : mongo:5.0
         container_name: mongodb
         environment:
@@ -48,5 +53,7 @@ services:
         ports:
         - 27017:27017
         restart: unless-stopped
+        networks:
+            - network
 networks:
   network: {}

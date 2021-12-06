@@ -23,7 +23,7 @@ namespace ServerRoomMonitoring.Api.Controllers
 
         [HttpGet]
         [Route("GetSensors")]
-        public List<SensorMessage> GetSensors()
+        public List<Sensor> GetSensors()
         {
             return _sensorService.GetAllSensors();
         }
