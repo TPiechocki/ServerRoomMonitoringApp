@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.VisualBasic.CompilerServices;
 using ServerRoomLibrary.Models;
 using ServerRoomLibrary.Repository;
 
@@ -26,6 +28,12 @@ namespace ServerRoomLibrary.Services
         public List<Sensor> GetByTypeSensors(string type)
         {
             return _sensorRepository.GetByTypeSensors(type);
+        }
+
+        public List<Sensor> GetByAllParamsSensors(int? id, string type, int? value, string unit, DateTime? date)
+        {
+            
+            return _sensorRepository.GetByAllParamsSensors(id, type,  value, unit, date);
         }
     }
 

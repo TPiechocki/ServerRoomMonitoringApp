@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServerRoomLibrary.Models;
 
 namespace ServerRoomLibrary.Services
@@ -11,7 +12,9 @@ namespace ServerRoomLibrary.Services
         
         public List<Sensor> GetByTypeSensors(string type);
 
-       
+        public List<Sensor> GetByAllParamsSensors(int? id, string type, int? value, string unit, DateTime? date);
+
+
     }
 
 

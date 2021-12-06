@@ -76,5 +76,23 @@ namespace ServerRoomLibrary.Repository
             return _sensors.Find(sensor =>
                 DateTime.Compare(sensor.Date, dateStart) >= 0 && DateTime.Compare(sensor.Date, dateEnd) <= 0).ToList();
         }
+        
+        public List<Sensor> GetByAllParamsSensors(int? no, string type, int? value, string unit, DateTime? date)
+        {
+            DateTime daten = (date != null ? date.Value : DateTime.MinValue);
+            int non =( no != null ? no.Value : 0);
+            int valuen = (value != null ? value.Value : 0);
+
+
+            return _sensors.Find(
+                sensor => 
+                (date!=null && sensor.Date.Equals(daten) )
+                && (!String.IsNullOrEmpty(unit) && sensor.Unit.Equals(unit) )
+                && (value!=null && sensor.Value.Equals(valuen) )
+                && (!String.IsNullOrEmpty(type) && sensor.SensorType.Equals(type) )
+                && (no!=null && sensor.Id.Equals(non) )
+                
+                ).ToList();
+        }
     }
 }

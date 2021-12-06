@@ -22,6 +22,8 @@ namespace ServerRoomLibrary.Repository
         
         public List<Sensor> GetByDateSensors(DateTime dateStart, DateTime dateEnd);
 
+        public List<Sensor> GetByAllParamsSensors(int? no, string type, int? value, string unit, DateTime? date);
+
 
 
     }

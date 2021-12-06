@@ -63,5 +63,19 @@ namespace ServerRoomLibrary.Repository
         {
             throw new NotImplementedException();
         }
+
+
+        public List<Sensor> GetByAllParamsSensors(int? no, string type, int? value, string unit, DateTime? date)
+        {
+            return Sensors.FindAll(
+                sensor =>
+                    (date!= null ? (DateTime.Compare(sensor.Date, date.Value) >= 0 ) : true)
+                    && (String.IsNullOrEmpty(unit) ? sensor.Unit.Equals(unit): true)
+                    && (value!=null ? sensor.Id.Equals(value.Value): true)
+                    && (String.IsNullOrEmpty(type) ? sensor.Unit.Equals(type): true)
+                    && (no!=null ? sensor.Id.Equals(no.Value) : true)
+                
+            );
+        }
     }
 }
