@@ -43,5 +43,23 @@ namespace ServerRoomMonitoring.Generator.Services
             }
             await Task.WhenAll(tasks);
         }
+
+       
+        public async void Start()
+        {
+            if (_stopper.Stopped)
+            {
+                CancellationTokenSource source = new CancellationTokenSource();
+                CancellationToken token = source.Token;
+
+                var tasks = new List<Task>();
+
+                foreach (var sensor in _serverRoom.Sensors)
+                {
+                    tasks.Add(Task.Run(() => DoWork(sensor, token)));
+                    await Task.WhenAll(tasks);
+                }
+            }            
+        }
     }
 }
