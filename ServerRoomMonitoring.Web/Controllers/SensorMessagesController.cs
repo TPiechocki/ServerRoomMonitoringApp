@@ -25,7 +25,6 @@ namespace ServerRoomMonitoring.Web.Controllers
         // GET: SensorMessages
         public IActionResult Index(string sortOrder)
         {
-            ViewData["IdSortParm"] = sortOrder == "Id" ? "id_desc" : "Id";
             ViewData["TypeSortParm"] = sortOrder == "Type" ? "type_desc" : "Type";
             ViewData["ValueSortParm"] = sortOrder == "Value" ? "value_desc" : "Value";
             ViewData["UnitSortParm"] = sortOrder == "Unit" ? "unit_desc" : "Unit";
@@ -34,12 +33,6 @@ namespace ServerRoomMonitoring.Web.Controllers
                            select s;
             switch (sortOrder)
             {
-                case "Id":
-                    sensors = sensors.OrderBy(s => s.Id);
-                    break;
-                case "id_desc":
-                    sensors = sensors.OrderByDescending(s => s.Id);
-                    break;
                 case "Type":
                     sensors = sensors.OrderBy(s => s.SensorType);
                     break;
