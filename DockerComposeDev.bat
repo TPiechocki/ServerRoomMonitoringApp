@@ -1,0 +1,1 @@
+docker compose -f .\docker-compose.developer.yml -p serverroom up -d
