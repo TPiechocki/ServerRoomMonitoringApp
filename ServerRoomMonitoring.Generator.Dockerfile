@@ -12,7 +12,7 @@ RUN dotnet publish -c Release -o out
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /app
-EXPOSE 82
-ENV ASPNETCORE_URLS=http://*:82
+EXPOSE 80
+ENV ASPNETCORE_URLS=http://*:80
 COPY --from=build-env /src/ServerRoomMonitoring.Generator/out .
 ENTRYPOINT ["dotnet", "ServerRoomMonitoring.Generator.dll"]

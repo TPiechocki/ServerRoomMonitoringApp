@@ -43,7 +43,7 @@ namespace ServerRoomLibrary.Repository
 
         public List<Sensor> GetAllSensors()
         {
-            return GetPageSensors(0, 10);
+            return _sensors.Find(sensor => true).ToList();
         }
         public List<Sensor> GetPageSensors(int elementFrom,int limit)
         {

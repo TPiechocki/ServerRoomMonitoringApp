@@ -2,19 +2,22 @@
   {
     "minRange": 10,
     "maxRange": 30,
-    "unit": "Celcius",
+    "type": "Temperature",
+    "unit": "C",
     "delay": 100
   },
   {
     "minRange": -5,
     "maxRange": 20,
-    "unit": "Celcius",
+    "type": "Voltage",
+    "unit": "V",
     "delay": 200
   },
   {
     "minRange": 0,
     "maxRange": 40,
-    "unit": "Celcius",
+    "type": "Temperature",
+    "unit": "C",
     "delay": 1000
   }
 ]
