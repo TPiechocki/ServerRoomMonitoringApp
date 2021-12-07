@@ -25,6 +25,6 @@
     "maxRange": 100,
     "type": "CarbonMonoxideSensor",
     "unit": "%",
-    "delay": 1300
+    "delay": 1400
   }
 ]

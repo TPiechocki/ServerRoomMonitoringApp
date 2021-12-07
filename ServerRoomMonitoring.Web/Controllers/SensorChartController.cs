@@ -59,7 +59,6 @@ namespace ServerRoomMonitoring.Web.Controllers
             var sensorList =  _context.GetAllSensors();
             var humidityList = new List<Sensor>();
             
-            
             foreach (var s in sensorList)
             {
                 if (s.SensorType == "Hygrometer")
