@@ -10,15 +10,15 @@ namespace ServerRoomMonitoring.Generator.Models
         public int _sensorId { get; set; }
         public SensorConfig _config { get; }
 
-        public Sensor(int id, IConfiguration configuration)
+        public Sensor(int id, SensorConfig configuration)
         {
             _sensorId = id;
-            _config = configuration.GetSection(id.ToString()).Get<SensorConfig>();
+            _config = configuration;
         }
         
         public SensorMessage GenerateValues()
         {
-            Random random = new Random();
+            var random = new Random();
             var sensorValue = random.Next(_config.minRange, _config.maxRange);
             var unit = _config.unit;
 
