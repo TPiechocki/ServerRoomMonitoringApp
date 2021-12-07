@@ -10,6 +10,8 @@ using ServerRoomMonitoring.Web.Config;
 using ServerRoomLibrary.Repository;
 using ServerRoomMonitoring.Web.Controllers;
 using ServerRoomLibrary.Services;
+using ServerRoomLibrary.Models;
+using Microsoft.Extensions.Options;
 
 namespace ServerRoomMonitoring.Web
 {
@@ -25,12 +27,17 @@ namespace ServerRoomMonitoring.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.Configure<SensorsDatabaseSettings>(Configuration.GetSection(nameof(SensorsDatabaseSettings)));
+
+            services.AddSingleton<ISensorsDatabaseSettings>(sp => sp.GetRequiredService<IOptions<SensorsDatabaseSettings>>().Value);
+
             services.AddControllersWithViews();
 
             // Configure DI
             services.AddConfig(Configuration);
 
-            services.AddScoped<ISensorRepository, MockSensorRepository>();
+            services.AddScoped<ISensorRepository, DBSensorRepository>();
             services.AddScoped<ISensorService, SensorService>();
         }
 
