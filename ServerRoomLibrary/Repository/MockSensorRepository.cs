@@ -94,6 +94,11 @@ namespace ServerRoomLibrary.Repository
             
         }
 
+        public List<Sensor> GetSortedByAllParamsSensors(int? id, string type, int? value, string unit, DateTime? date,string sortBy, string sortMode)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public List<Sensor> GetSortedByTypeAsc(string type)
         {

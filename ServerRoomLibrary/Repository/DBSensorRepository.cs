@@ -129,6 +129,91 @@ namespace ServerRoomLibrary.Repository
                 ).ToList();
         }
         
+        public List<Sensor> GetSortedByAllParamsSensors(int? id, string type, int? value, string unit, DateTime? date,string sortBy, string sortMode)
+        {
+            bool sortAsc = !sortMode?.Equals("desc") ?? true;
+
+            DateTime daten = (date != null ? date.Value : DateTime.MinValue);
+            int non =( id != null ? id.Value : 0);
+            int valuen = (value != null ? value.Value : 0);
+           
+
+            var quer = _sensors.Find(
+                sensor =>
+                    ((date != null && sensor.Date.Equals(daten)) || date == null)
+                    && ((!String.IsNullOrEmpty(unit) && sensor.Unit.Equals(unit)) || String.IsNullOrEmpty(unit))
+                    && ((value != null && sensor.Value.Equals(valuen)) || value == null)
+                    && ((!String.IsNullOrEmpty(type) && sensor.SensorType.Equals(type)) || String.IsNullOrEmpty(type))
+                    && ((id != null && sensor.Id.Equals(non)) || id == null)
+            );
+
+            if (sortBy != null)
+            {
+                switch (sortBy)
+                {
+                    case "id":
+                        if (sortAsc is true)
+                        {
+                            quer = quer.SortBy(sensor => sensor.Id);
+                        }
+                        else
+                        {
+                            quer = quer.SortByDescending(sensor => sensor.Id);
+                        }
+                    
+                        break;
+                    case "type":
+                        if (sortAsc is true)
+                        {
+                            quer = quer.SortBy(sensor => sensor.SensorType);
+                        }
+                        else
+                        {
+                            quer = quer.SortByDescending(sensor => sensor.SensorType);
+                        }
+                    
+                        break;
+                    case "value":
+                        if (sortAsc is true)
+                        {
+                            quer = quer.SortBy(sensor => sensor.Value);
+                        }
+                        else
+                        {
+                            quer = quer.SortByDescending(sensor => sensor.Value);
+                        }
+                    
+                        break;
+                    case "unit":
+                    
+                        if (sortAsc is true)
+                        {
+                            quer = quer.SortBy(sensor => sensor.Unit);
+                        }
+                        else
+                        {
+                            quer = quer.SortByDescending(sensor => sensor.Unit);
+                        }
+
+                        break;
+                    case "date":
+                        if (sortAsc is true)
+                        {
+                            quer = quer.SortBy(sensor => sensor.Date);
+                        }
+                        else
+                        {
+                            quer = quer.SortByDescending(sensor => sensor.Date);
+                        }
+                    
+                        break;
+                }
+            }
+            return quer.ToList();
+        }
+        
+        
+        
         public List<Sensor> GetSortedByTypeAsc(string type)
         {
             return _sensors.Find(sensor => (!String.IsNullOrEmpty(type) && sensor.SensorType.Equals(type) )).SortBy(sensor => sensor.SensorType).ToList();

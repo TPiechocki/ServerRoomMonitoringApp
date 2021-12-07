@@ -23,6 +23,7 @@ namespace ServerRoomLibrary.Repository
         public List<Sensor> GetByDateSensors(DateTime dateStart, DateTime dateEnd);
 
         public List<Sensor> GetByAllParamsSensors(int? no, string type, int? value, string unit, DateTime? date);
+        public List<Sensor> GetSortedByAllParamsSensors(int? id, string type, int? value, string unit, DateTime? date,string sortBy, string sortMode);
 
         public List<Sensor> GetSortedByTypeAsc(string type);
         public void AddManyDev();

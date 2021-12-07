@@ -13,6 +13,7 @@ namespace ServerRoomLibrary.Services
         public List<Sensor> GetByTypeSensors(string type);
 
         public List<Sensor> GetByAllParamsSensors(int? id, string type, int? value, string unit, DateTime? date);
+        public List<Sensor> GetSortedByAllParamsSensors(int? id, string type, int? value, string unit, DateTime? date,string sortBy, string sortMode);
 
         public List<Sensor> GetSortedByTypeAsc(string type);
 
