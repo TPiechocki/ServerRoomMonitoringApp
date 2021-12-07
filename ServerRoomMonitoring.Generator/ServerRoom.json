@@ -4,20 +4,27 @@
     "maxRange": 30,
     "type": "Temperature",
     "unit": "C",
-    "delay": 100
+    "delay": 1000
   },
   {
     "minRange": -5,
     "maxRange": 20,
     "type": "Voltage",
     "unit": "V",
-    "delay": 200
+    "delay": 1100
   },
   {
     "minRange": 0,
-    "maxRange": 40,
-    "type": "Temperature",
-    "unit": "C",
-    "delay": 1000
+    "maxRange": 100,
+    "type": "Hygrometer",
+    "unit": "%",
+    "delay": 1200
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "CarbonMonoxideSensor",
+    "unit": "%",
+    "delay": 1300
   }
 ]

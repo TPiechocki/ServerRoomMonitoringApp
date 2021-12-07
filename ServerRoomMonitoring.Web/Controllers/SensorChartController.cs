@@ -53,5 +53,37 @@ namespace ServerRoomMonitoring.Web.Controllers
             }
             return Json(voltageList);  
         }  
+        [HttpGet]  
+        public JsonResult SensorChartHygrometer()  
+        {  
+            var sensorList =  _context.GetAllSensors();
+            var humidityList = new List<Sensor>();
+            
+            
+            foreach (var s in sensorList)
+            {
+                if (s.SensorType == "Hygrometer")
+                {
+                    humidityList.Add(s);
+                }
+            }
+            return Json(humidityList);  
+        }  
+        [HttpGet]  
+        public JsonResult SensorChartCarbonMonoxide()  
+        {  
+            var sensorList =  _context.GetAllSensors();
+       
+            var carbonMonoxideList = new List<Sensor>();
+            
+            foreach (var s in sensorList)
+            {
+                if (s.SensorType == "CarbonMonoxideSensor")
+                {
+                    carbonMonoxideList.Add(s);
+                }
+            }
+            return Json(carbonMonoxideList);  
+        }  
     }
 }
