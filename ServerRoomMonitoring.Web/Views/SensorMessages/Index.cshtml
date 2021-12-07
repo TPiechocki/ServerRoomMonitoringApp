@@ -3,10 +3,11 @@
 
 @using Highsoft.Web.Mvc.Charts
 @using Highsoft.Web.Mvc.Charts.Rendering;
-<script src = "http://code.highcharts.com/highcharts.js"></script>
-<script src = "https://code.highcharts.com/modules/exporting.js"></script>
-
-@model IEnumerable<ServerRoomLibrary.Models.Sensor>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+@using ServerRoomMonitoring.Web.Paging
+@*@model IEnumerable<ServerRoomLibrary.Models.Sensor>*@
+@model PaginatedList<ServerRoomLibrary.Models.Sensor>
 
 @{
     ViewData["Title"] = "Index";
@@ -15,34 +16,34 @@
 <h1>Index</h1>
 @using (Html.BeginForm(actionName: "Reload", "SensorMessages", method: FormMethod.Post))
 {
-   <input type="submit" value="Odśwież" />
+    <input type="submit" value="Odśwież" class="btn btn-default"/>
 }
 @using (Html.BeginForm(actionName: "DownloadCsv", "SensorMessages", method: FormMethod.Get))
 {
-   <input type="submit" value="Pobierz csv" />
+    <input type="submit" value="Pobierz csv" class="btn btn-default"/>
 }
 @using (Html.BeginForm(actionName: "DownloadJson", "SensorMessages", method: FormMethod.Get))
 {
-   <input type="submit" value="Pobierz json" />
+    <input type="submit" value="Pobierz json" class="btn btn-default"/>
 }
 <div>
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["IdSortParm"]">@Html.DisplayNameFor(model => model.Id)</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["IdSortParm"]">Id</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TypeSortParm"]">@Html.DisplayNameFor(model => model.SensorType)</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TypeSortParm"]">SensorType</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["ValueSortParm"]">@Html.DisplayNameFor(model => model.Value)</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["ValueSortParm"]">Value</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["UnitSortParm"]">@Html.DisplayNameFor(model => model.Unit)</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["UnitSortParm"]">Unit</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.Date)</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">Date</a>
                 </th>
                 <th></th>
             </tr>
@@ -50,26 +51,44 @@
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SensorType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Value)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Unit)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SensorType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Value)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Unit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
 
-            </tr>
+                </tr>
             }
         </tbody>
-        
-        </table>
+
+    </table>
 </div>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

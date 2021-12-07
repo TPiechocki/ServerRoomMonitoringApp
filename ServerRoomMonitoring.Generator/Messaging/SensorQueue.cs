@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 using ServerRoomMonitoring.Generator.Config;
 using Microsoft.Extensions.Logging;
 using ServerRoomLibrary.Models;
+using RabbitMQ.Client.Exceptions;
+using System.Threading;
 
 namespace ServerRoomMonitoring.Generator.Messaging
 {
@@ -83,7 +85,24 @@ namespace ServerRoomMonitoring.Generator.Messaging
                     UserName = _username,
                     Password = _password
                 };
-                _connection = factory.CreateConnection();
+                while (true)
+                {
+                    try
+                    {
+                        Console.WriteLine("Try To connect");
+                        _connection = factory.CreateConnection();
+                        Console.WriteLine("Connection Success");
+                        break;
+                    }
+                    catch (BrokerUnreachableException exception)
+                    {
+                        Thread.Sleep(1000);
+                        Console.WriteLine("Connection Fail");
+
+                    }
+
+                }
+                /*_connection = factory.CreateConnection();*/
             }
             catch (Exception e)
             {

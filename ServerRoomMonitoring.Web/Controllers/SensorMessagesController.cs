@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using ServerRoomLibrary.Models;
 using ServerRoomLibrary.Repository;
 using ServerRoomLibrary.Services;
+using ServerRoomMonitoring.Web.Paging;
 
 namespace ServerRoomMonitoring.Web.Controllers
 {
@@ -23,7 +24,7 @@ namespace ServerRoomMonitoring.Web.Controllers
         }
 
         // GET: SensorMessages
-        public IActionResult Index(string sortOrder)
+        public IActionResult Index(string sortOrder, int? pageNumber)
         {
             ViewData["IdSortParm"] = sortOrder == "Id" ? "id_desc" : "Id";
             ViewData["TypeSortParm"] = sortOrder == "Type" ? "type_desc" : "Type";
@@ -68,13 +69,14 @@ namespace ServerRoomMonitoring.Web.Controllers
                     sensors = sensors.OrderBy(s => s.SensorType);
                     break;
             }
-            return View(sensors);
+            int pageSize = 10;
+            return View(PaginatedList<Sensor>.Create(sensors, pageNumber ?? 1, pageSize));
         }
 
         [HttpPost]
         public IActionResult Reload()
-        {
-            return View("Index", _context.GetAllSensors());
+        {            
+            return RedirectToAction("Index"); ;
         }
         public IActionResult DownloadCsv()
         {

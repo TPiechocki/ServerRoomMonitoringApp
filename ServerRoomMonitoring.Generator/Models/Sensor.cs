@@ -21,8 +21,9 @@ namespace ServerRoomMonitoring.Generator.Models
             var random = new Random();
             var sensorValue = random.Next(_config.minRange, _config.maxRange);
             var unit = _config.unit;
+            var type = _config.type;           
 
-            return new(_sensorId, "Temperature", sensorValue, "C", DateTime.Now);
+            return new(_sensorId, type, sensorValue, unit, DateTime.Now);
         }
     }
 }
