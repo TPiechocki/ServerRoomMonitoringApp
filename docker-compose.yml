@@ -10,7 +10,13 @@ services:
     serverroom-api:
         image: tpiechocki/si_175690_api
         ports:
-            - 17570:81
+            - 17570:80
+        networks:
+            - network
+    serverroom-api:
+        image: tpiechocki/si_175690_generator
+        ports:
+            - 17571:80
         networks:
             - network
     rabbitmq:
