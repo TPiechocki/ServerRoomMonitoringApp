@@ -36,4 +36,13 @@ jobs:
           file: ServerRoomMonitoring.Api.Dockerfile
           push: true
           tags: tpiechocki/si_175690_api:latest
+          
+      -
+        name: Build and push Generator
+        id: docker_build_generator
+        uses: docker/build-push-action@v2
+        with: 
+          file: ServerRoomMonitoring.Generator.Dockerfile
+          push: true
+          tags: tpiechocki/si_175690_generator:latest
 
