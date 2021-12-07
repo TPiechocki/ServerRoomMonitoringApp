@@ -4,27 +4,279 @@
     "maxRange": 30,
     "type": "Temperature",
     "unit": "C",
-    "delay": 1000
+    "delay": 10000
   },
   {
     "minRange": -5,
     "maxRange": 20,
     "type": "Voltage",
     "unit": "V",
-    "delay": 1100
+    "delay": 11000
   },
   {
     "minRange": 0,
     "maxRange": 100,
     "type": "Hygrometer",
     "unit": "%",
-    "delay": 1200
+    "delay": 12000
   },
   {
     "minRange": 0,
     "maxRange": 100,
     "type": "CarbonMonoxideSensor",
     "unit": "%",
-    "delay": 1400
+    "delay": 13000
+  },
+  {
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "Temperature",
+    "unit": "C",
+    "delay": 14000
+  },
+  {
+    "minRange": -5,
+    "maxRange": 20,
+    "type": "Voltage",
+    "unit": "V",
+    "delay": 15000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "Hygrometer",
+    "unit": "%",
+    "delay": 16000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "CarbonMonoxideSensor",
+    "unit": "%",
+    "delay": 17000
+  },
+  {
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "Temperature",
+    "unit": "C",
+    "delay": 18000
+  },
+  {
+    "minRange": -5,
+    "maxRange": 20,
+    "type": "Voltage",
+    "unit": "V",
+    "delay": 19000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "Hygrometer",
+    "unit": "%",
+    "delay": 20000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "CarbonMonoxideSensor",
+    "unit": "%",
+    "delay": 21000
+  },
+  {
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "Temperature",
+    "unit": "C",
+    "delay": 22000
+  },
+  {
+    "minRange": -5,
+    "maxRange": 20,
+    "type": "Voltage",
+    "unit": "V",
+    "delay": 23000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "Hygrometer",
+    "unit": "%",
+    "delay": 24000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "CarbonMonoxideSensor",
+    "unit": "%",
+    "delay": 25000
+  },
+  {
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "Temperature",
+    "unit": "C",
+    "delay": 26000
+  },
+  {
+    "minRange": -5,
+    "maxRange": 20,
+    "type": "Voltage",
+    "unit": "V",
+    "delay": 27000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "Hygrometer",
+    "unit": "%",
+    "delay": 28000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "CarbonMonoxideSensor",
+    "unit": "%",
+    "delay": 29000
+  },
+  {
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "Temperature",
+    "unit": "C",
+    "delay": 30000
+  },
+  {
+    "minRange": -5,
+    "maxRange": 20,
+    "type": "Voltage",
+    "unit": "V",
+    "delay": 31000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "Hygrometer",
+    "unit": "%",
+    "delay": 32000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "CarbonMonoxideSensor",
+    "unit": "%",
+    "delay": 33000
+  },
+  {
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "Temperature",
+    "unit": "C",
+    "delay": 34000
+  },
+  {
+    "minRange": -5,
+    "maxRange": 20,
+    "type": "Voltage",
+    "unit": "V",
+    "delay": 35000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "Hygrometer",
+    "unit": "%",
+    "delay": 36000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "CarbonMonoxideSensor",
+    "unit": "%",
+    "delay": 37000
+  },
+  {
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "Temperature",
+    "unit": "C",
+    "delay": 38000
+  },
+  {
+    "minRange": -5,
+    "maxRange": 20,
+    "type": "Voltage",
+    "unit": "V",
+    "delay": 39000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "Hygrometer",
+    "unit": "%",
+    "delay": 40000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "CarbonMonoxideSensor",
+    "unit": "%",
+    "delay": 41000
+  },
+  {
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "Temperature",
+    "unit": "C",
+    "delay": 42000
+  },
+  {
+    "minRange": -5,
+    "maxRange": 20,
+    "type": "Voltage",
+    "unit": "V",
+    "delay": 43000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "Hygrometer",
+    "unit": "%",
+    "delay": 44000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "CarbonMonoxideSensor",
+    "unit": "%",
+    "delay": 45000
+  },
+  {
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "Temperature",
+    "unit": "C",
+    "delay": 46000
+  },
+  {
+    "minRange": -5,
+    "maxRange": 20,
+    "type": "Voltage",
+    "unit": "V",
+    "delay": 47000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "Hygrometer",
+    "unit": "%",
+    "delay": 48000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "CarbonMonoxideSensor",
+    "unit": "%",
+    "delay": 49000
   }
 ]
