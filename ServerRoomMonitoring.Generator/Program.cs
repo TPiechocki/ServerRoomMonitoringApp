@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -24,9 +23,7 @@ namespace ServerRoomMonitoring.Generator
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                })
-                .ConfigureAppConfiguration((context,builder) =>
-                    builder.AddJsonFile("ServerRoom.json", false, true));
+                });
         }
     }
 }
