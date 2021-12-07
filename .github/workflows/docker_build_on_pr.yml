@@ -25,4 +25,10 @@ jobs:
         uses: docker/build-push-action@v2
         with: 
           file: ServerRoomMonitoring.Api.Dockerfile
-
+          
+      -
+        name: Build and push Generator
+        id: docker_build_generator
+        uses: docker/build-push-action@v2
+        with: 
+          file: ServerRoomMonitoring.Generator.Dockerfile
