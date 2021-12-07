@@ -35,6 +35,17 @@ namespace ServerRoomLibrary.Services
             
             return _sensorRepository.GetByAllParamsSensors(id, type,  value, unit, date);
         }
+
+        public List<Sensor> GetSortedByTypeAsc(string type)
+        {
+            return _sensorRepository.GetSortedByTypeAsc(type);
+        }
+
+        public void AddManyDev()
+        {
+            _sensorRepository.AddManyDev();
+        }
+        
     }
 
 

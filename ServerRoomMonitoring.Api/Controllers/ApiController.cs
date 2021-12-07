@@ -49,5 +49,25 @@ namespace ServerRoomMonitoring.Api.Controllers
             
             
         }
+
+        [HttpGet]
+        [Route("sortType")]
+        public List<Sensor> SortType([FromQuery(Name = "type")] string type)
+        {
+            return _sensorService.GetSortedByTypeAsc(type);
+        }
+        
+        
+        [HttpGet]
+        [Route("addMany")]
+        public IActionResult AddMany()
+        {
+           _sensorService.AddManyDev();
+           return Ok("Dodano - DEV");
+        }
+        
+        
+        
+        
     }
 }

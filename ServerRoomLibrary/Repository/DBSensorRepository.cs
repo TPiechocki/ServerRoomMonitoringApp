@@ -15,30 +15,32 @@ namespace ServerRoomLibrary.Repository
             var database = client.GetDatabase(settings.DatabaseName);
 
             _sensors = database.GetCollection<Sensor>(settings.CollectionName);
-            
-            // var sensors = new List<Sensor>
-            // {
-            //     new(1, "Temperature", 22, "C",DateTime.Now),
-            //     new(1, "Temperature", 23, "C",DateTime.Now),
-            //     new(1,"Temperature",21,"C",DateTime.Now),
-            //     new(4,"Temperature",20,"C",DateTime.Now),
-            //     new(5,"Temperature",21,"C",DateTime.Now),
-            //     new(6,"Voltage",212,"V",DateTime.Now),
-            //     new(7,"Temperature",22,"C",DateTime.Now),
-            //     new(8,"Temperature",19,"C",DateTime.Now),
-            //     new(9,"Temperature",21,"C",DateTime.Now),
-            //     new(10,"Temperature",20,"C",DateTime.Now),
-            //     new(10,"Temperature",21,"C",DateTime.Now),
-            //     new(11,"Temperature",22,"C",DateTime.Now),
-            //     new(11,"Voltage",213,"V",DateTime.Now),
-            //     new(14,"Voltage",200,"V",DateTime.Now),
-            // };
-            //
-            // foreach (var var in sensors)
-            // {
-            //     _sensors.InsertOne(var);
-            // }
-            
+           
+            //bool dev = true;
+            //if (dev)
+            //{
+            //    var sensors = new List<Sensor>
+            //    {
+            //        new(1, "Temperature", 22, "C",DateTime.Now),
+            //        new(1, "Temperature", 34, "F",DateTime.UtcNow),
+            //        new(1,"Temperature",21,"C",DateTime.Now),
+            //        new(4,"Temperature",20,"C",DateTime.Now),
+            //        new(5,"Temperature",21,"C",DateTime.Now),
+            //        new(6,"Voltage",212,"V",DateTime.MaxValue),
+            //        new(7,"Temperature",22,"C",DateTime.Today),
+            //        new(8,"Temperature",19,"C",DateTime.Now),
+            //        new(9,"Temperature",50,"F",DateTime.Now),
+            //        new(10,"Temperature",20,"C",DateTime.Now),
+            //        new(10,"Temperature",21,"C",DateTime.MinValue),
+            //        new(11,"Temperature",-10,"C",DateTime.Now),
+            //        new(11,"Voltage",213,"V",DateTime.Now),
+            //        new(14,"Voltage",200,"V",DateTime.Now),
+            //    };
+            //    foreach (var var in sensors)
+            //    {
+            //        _sensors.InsertOne(var);
+            //    }
+            //}
         }
 
         public List<Sensor> GetAllSensors()
@@ -54,6 +56,31 @@ namespace ServerRoomLibrary.Repository
         public void AddSensor(Sensor sensor)
         {
             _sensors.InsertOne(sensor);
+        }
+
+        public void AddManyDev()
+        {
+            var sensors = new List<Sensor>
+            {
+                new(1, "Temperature", 22, "C",DateTime.Now),
+                new(2, "Temperature", 34, "F",DateTime.UtcNow),
+                new(3,"Temperature",21,"C",DateTime.Now),
+                new(4,"Temperature",20,"C",DateTime.Now),
+                new(5,"Temperature",21,"C",DateTime.Now),
+                new(6,"Voltage",212,"V",DateTime.MaxValue),
+                new(7,"Temperature",22,"C",DateTime.Today),
+                new(8,"Temperature",19,"C",DateTime.Now),
+                new(9,"Temperature",50,"F",DateTime.Now),
+                new(10,"Temperature",20,"C",DateTime.Now),
+                new(11,"Temperature",21,"C",DateTime.MinValue),
+                new(12,"Temperature",-10,"C",DateTime.Now),
+                new(13,"Voltage",213,"V",DateTime.Now),
+                new(14,"Voltage",200,"V",DateTime.Now),
+            };
+            foreach (var var in sensors)
+            {
+                _sensors.InsertOne(var);
+            }
         }
 
         public List<Sensor> GetByTypeSensors(string type)
@@ -86,13 +113,27 @@ namespace ServerRoomLibrary.Repository
 
             return _sensors.Find(
                 sensor => 
-                (date!=null && sensor.Date.Equals(daten) )
-                && (!String.IsNullOrEmpty(unit) && sensor.Unit.Equals(unit) )
-                && (value!=null && sensor.Value.Equals(valuen) )
-                && (!String.IsNullOrEmpty(type) && sensor.SensorType.Equals(type) )
-                && (no!=null && sensor.Id.Equals(non) )
+               // (date!=null && sensor.Date.Equals(daten) )
+               // && (!String.IsNullOrEmpty(unit) && sensor.Unit.Equals(unit) )
+               // && (value!=null && sensor.Value.Equals(valuen) )
+               // && (!String.IsNullOrEmpty(type) && sensor.SensorType.Equals(type) )
+               // && (no!=null && sensor.Id.Equals(non) )
+                
+               ((date!=null && sensor.Date.Equals(daten) ) || date==null) 
+               && ((!String.IsNullOrEmpty(unit) && sensor.Unit.Equals(unit) ) || String.IsNullOrEmpty(unit)) 
+               && ((value!=null && sensor.Value.Equals(valuen) ) || value==null)
+               && ((!String.IsNullOrEmpty(type) && sensor.SensorType.Equals(type) ) || String.IsNullOrEmpty(type))
+               && ((no!=null && sensor.Id.Equals(non) ) || no==null)
+                
                 
                 ).ToList();
         }
+        
+        public List<Sensor> GetSortedByTypeAsc(string type)
+        {
+            return _sensors.Find(sensor => (!String.IsNullOrEmpty(type) && sensor.SensorType.Equals(type) )).SortBy(sensor => sensor.SensorType).ToList();
+        }
+        
+        
     }
 }

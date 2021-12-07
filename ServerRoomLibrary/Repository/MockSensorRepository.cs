@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualBasic;
 using ServerRoomLibrary.Models;
 
@@ -44,6 +45,11 @@ namespace ServerRoomLibrary.Repository
             Sensors.Add(sensor);
         }
 
+        public void AddManyDev()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Sensor> GetByTypeSensors(string type)
         {
             return Sensors.FindAll(x => x.SensorType.Equals(type));
@@ -67,15 +73,31 @@ namespace ServerRoomLibrary.Repository
 
         public List<Sensor> GetByAllParamsSensors(int? no, string type, int? value, string unit, DateTime? date)
         {
+            DateTime daten = (date != null ? date.Value : DateTime.MinValue);
+            int non =( no != null ? no.Value : 0);
+            int valuen = (value != null ? value.Value : 0);
+            
             return Sensors.FindAll(
                 sensor =>
-                    (date!= null ? (DateTime.Compare(sensor.Date, date.Value) >= 0 ) : true)
-                    && (String.IsNullOrEmpty(unit) ? sensor.Unit.Equals(unit): true)
-                    && (value!=null ? sensor.Id.Equals(value.Value): true)
-                    && (String.IsNullOrEmpty(type) ? sensor.Unit.Equals(type): true)
-                    && (no!=null ? sensor.Id.Equals(no.Value) : true)
+               //     (date!= null ? (DateTime.Compare(sensor.Date, date.Value) >= 0 ) : true)
+               ///     && (String.IsNullOrEmpty(unit) ? true :sensor.Unit.Equals(unit))
+               //     && (value!=null ? sensor.Id.Equals(value.Value): true)
+               //     && (String.IsNullOrEmpty(type) ? true :sensor.Unit.Equals(type))
+              //      && (no!=null ? sensor.Id.Equals(no.Value) : true)
+               ((date!=null && sensor.Date.Equals(daten) ) || date==null) 
+               && ((!String.IsNullOrEmpty(unit) && sensor.Unit.Equals(unit) ) || String.IsNullOrEmpty(unit)) 
+               && ((value!=null && sensor.Value.Equals(valuen) ) || value==null)
+               && ((!String.IsNullOrEmpty(type) && sensor.SensorType.Equals(type) ) || String.IsNullOrEmpty(type))
+               && ((no!=null && sensor.Id.Equals(non) ) || no==null)
                 
-            );
+            ).ToList();
+            
+        }
+
+
+        public List<Sensor> GetSortedByTypeAsc(string type)
+        {
+            throw new NotImplementedException();
         }
     }
 }
